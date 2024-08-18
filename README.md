@@ -14,22 +14,22 @@ And much more
 Commands:
 =
 ### React App
-> For creating a react app
+<> For creating a react app
 ...
 npx create-react-app tutorial
 ...
 
-> For installing Material UI
+<> For installing Material UI
 ...
 npm install @mui/material @emotion/react @emotion/styled
 ...
 
-> For Roboto Font
+<> For Roboto Font
 ...
 npm install @fontsource/roboto
 ...
 
-> For icons of material UI
+<> For icons of material UI
 ...
 npm install @mui/icons-material
 ...

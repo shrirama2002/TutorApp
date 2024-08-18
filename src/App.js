@@ -1,8 +1,8 @@
 
 import './App.css';
 
-import './SignUp.js';
 import SignUp from './SignUp.js';
+
 
 function App() {
   return (

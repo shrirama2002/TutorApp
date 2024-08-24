@@ -1,15 +1,17 @@
 
 import './App.css';
 
-import SignUp from './SignUp.js';
+import SignUp from './Components/SignUp.js';
+import SignIn from './Components/SignIn.js';
+import Dashboard from './Components/Dashboard/Dashboard.js';
 
 
 function App() {
   return (
     <div className="App">
       
-        <SignUp/>
-
+        <Dashboard/>
+        
     </div>
   );
 }

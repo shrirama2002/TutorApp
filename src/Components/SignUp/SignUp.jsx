@@ -35,11 +35,28 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+    const formData = {
+        firstName: data.get('firstName'),
+        lastName: data.get('lastName'),
+        email: data.get('email'),
+        password: data.get('password'),
+    };
+
+    console.log('Form data:', formData);
+
+    // Replace this console log with an API call
+    // Example:
+    // fetch('/api/signup', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(formData),
+    // })
+    // .then(response => response.json())
+    // .then(data => console.log('Success:', data))
+    // .catch(error => console.error('Error:', error));
+};
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -103,12 +120,12 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Button
               type="submit"
@@ -120,7 +137,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="./SignIn" variant="body2"> {/* href change*/}
+                <Link href="./signin" variant="body2"> {/* href change*/}
                   Already have an account? Sign in
                 </Link>
               </Grid>

@@ -184,7 +184,7 @@ export default function Dashboard() {
 
 
               </Grid>
-            <Copyright sx={{ pt: 4 }} />
+            {/* <Copyright sx={{ pt: 4 }} /> */}
           </Container>
         </Box>
       </Box>

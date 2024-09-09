@@ -81,7 +81,7 @@ export default function BookCard({ bookId }) {
   };
 
   const handleCardClick = () => {
-    navigate('/mainlayout');
+    navigate(`/dashboard/${bookId}`);
   };
 
   if (!book) {

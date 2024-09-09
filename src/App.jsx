@@ -5,6 +5,7 @@ import SignUp from './Components/SignUp/SignUp.jsx';
 import SignIn from './Components/SignIn/SignIn.jsx';
 import Dashboard from './Components/Dashboard/Dashboard.js';
 import HomePage from './Components/HomePage/HomePage.jsx';
+import MainLayout from './Components/bookopenlayout/MainLayout.jsx'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} /> 
                 <Route path="/dashboard" element={<Dashboard/>} />
+                <Route path="/mainlayout" element={<MainLayout/>}/>
             </Routes>
         </Router>
   );

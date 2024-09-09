@@ -19,12 +19,15 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import SignIn from '../SignIn/SignIn';
+import DisplayBooks from './DisplayBooks.jsx'
+
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
 //card for books
 import RecipeReviewCard from '../Books/BookCard'
 import { alignProperty } from '@mui/material/styles/cssUtils';
+import BookCard from '../Books/BookCard';
 
 function Copyright(props) {
   return (
@@ -176,10 +179,10 @@ export default function Dashboard() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4}}>
             <Grid container spacing={3} sx={{padding: 3,gap: 2,justifyContent:"center"}}>
               {/* This is the main grid */}
-              <RecipeReviewCard />
-                <RecipeReviewCard />
-                <RecipeReviewCard />
-                <RecipeReviewCard sx={{}}/>
+              
+              <DisplayBooks/>
+
+
               </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>

@@ -8,6 +8,7 @@ import HomePage from './Components/HomePage/HomePage.jsx';
 import MainLayout from './Components/bookopenlayout/MainLayout.jsx'
 import { useParams } from 'react-router-dom';
 
+
 function App() {
   return (
         <Router>
@@ -25,8 +26,11 @@ function App() {
 
 
 function MainLayoutWrapper() {
+  
   const { bookId } = useParams(); // Get bookId from URL parameters
+  
   return <MainLayout bookId={bookId} />;
 }
+
 
 export default App;

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, Typography,Card, CardContent } from '@mui/material';
 import ChapterList from './ChapterList';
 import ChapterContent from './ChapterContent';
 import axios from '../../axiosConfig.js';
 
-const MainLayout = ({ bookId }) => {
+const MainLayout = ({ bookId}) => {
   const [chapters, setChapters] = useState([]);
   const [selectedChapterIndex, setSelectedChapterIndex] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -36,6 +36,8 @@ const MainLayout = ({ bookId }) => {
   return (
     <Box sx={{ height: '100vh', display: 'flex' }}>
       <Grid container sx={{ height: '100%' }}>
+        {chapters.length > 0 ? (
+        <>
         <Grid item xs={3} sx={{ bgcolor: 'background.paper', padding: 1 }}>
           <ChapterList chapters={chapters} onChapterClick={handleChapterClick} />
         </Grid>
@@ -51,6 +53,24 @@ const MainLayout = ({ bookId }) => {
             />
           )}
         </Grid>
+       </> ) : (
+        
+       <>
+      <Card sx={{ maxWidth: 420, maxHeight: 200,alignSelf:'center',margin: 'auto',backgroundColor:'aquamarine'}}>
+        <Box sx={{ height: '100vh', display: 'flex' }}>
+          <Grid container sx={{ height: '100%' }}>
+            <Grid item xs={9} sx={{ bgcolor: 'background.paper', padding: 1,justifyItems:'center',backgroundColor:'#ffff99'}}>
+              <CardContent>
+              <Typography sx={{fontWeight: 500,fontSize:24}}>
+                This Book Does not Contain Chapters, yet!!!
+              </Typography>
+              </CardContent>
+            </Grid>
+          </Grid>
+        </Box>
+      </Card>
+       </>)
+}
       </Grid>
     </Box>
   );

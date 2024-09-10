@@ -12,14 +12,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import axios from '../../axiosConfig.js';
+import Alert from '@mui/material/Alert';  // Import for displaying alerts
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="http://localhost:3000/signup">
+        Shadow Read
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -32,30 +33,35 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+
+  const [message, setMessage] = React.useState(); // State for success or error message
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const formData = {
-        firstName: data.get('firstName'),
-        lastName: data.get('lastName'),
+        name: data.get('firstName') +" "+ data.get('lastName'),
         email: data.get('email'),
         password: data.get('password'),
+        role : 'user'
     };
 
-    console.log('Form data:', formData);
-
-    // Replace this console log with an API call
-    // Example:
-    // fetch('/api/signup', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(formData),
-    // })
-    // .then(response => response.json())
-    // .then(data => console.log('Success:', data))
-    // .catch(error => console.error('Error:', error));
+    // console.log('Form data:', formData);
+    
+      axios.post(`/auth/signup/`,formData,{headers: {'Content-Type': 'application/json'}})
+      .then(response => {
+        //{console.log(response.data.book);} // Inspect the data structure
+        console.log(response.data);
+        setMessage({type: 'success', text: 'Sign up successful!' });
+        
+      })
+      .catch(error => {
+        console.error('There was an error fetching Adding user!', error);
+        setMessage({ type: 'error', text: 'Please try again later.' });
+      });
+      
+      event.currentTarget.reset();
+    
 };
 
   return (
@@ -75,7 +81,14 @@ export default function SignUp() {
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
-          </Typography>
+            </Typography>
+          {/* Display success or error message */}
+          {message && (
+            <Alert severity={message.type} sx={{ width: '100%', mt: 2 }}>
+              {message.text}
+            </Alert>
+          )}
+         
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>

@@ -33,8 +33,8 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://localhost:3300/">
-        Your Website
+      <Link color="inherit" href="https://localhost:3000/">
+        Shadow Read
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -101,7 +101,7 @@ export default function Dashboard() {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar position="absolute" open={!open}> {/* open is closed for now */}
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
@@ -135,7 +135,7 @@ export default function Dashboard() {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" open={!open}> {/* open is closed for now */}
           <Toolbar
             sx={{
               display: 'flex',
@@ -157,7 +157,7 @@ export default function Dashboard() {
           <Divider />
           <List component="nav">
             {/* Main DashBoard Left Side  */}
-            {mainListItems}
+            {/* {mainListItems}  commented just for now for hide pupose */}
             <Divider sx={{ my: 1 }} />
             {/* Main Dashboard left side bottom */}
             {/* {secondaryListItems} */}
@@ -184,7 +184,7 @@ export default function Dashboard() {
 
 
               </Grid>
-            {/* <Copyright sx={{ pt: 4 }} /> */}
+            <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
       </Box>

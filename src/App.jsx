@@ -1,6 +1,6 @@
 
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import SignUp from './Components/SignUp/SignUp.jsx';
 import SignIn from './Components/SignIn/SignIn.jsx';
 import Dashboard from './Components/Dashboard/Dashboard.js';

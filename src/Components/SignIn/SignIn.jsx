@@ -13,13 +13,14 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+import axios from '../../axiosConfig.js'
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://localhost:3000/signup">
+        Shadow Read
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -28,25 +29,38 @@ function Copyright(props) {
 }
 
 //validation sample function for now
-function myValidation(data){
-  if(data.get('email')!=='abc' || data.get('password')!=='123')
-  return false
-}
+// function myValidation(data){
+//   if(data.get('email')!=='abc' || data.get('password')!=='123')
+//   return false
+// }
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
+  
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    
-    console.log({
+    const formData = {
       email: data.get('email'),
-      password: data.get('password'),
-    });
-          navigate('/dashboard');
+      password: data.get('password')
+    };
+  console.log(formData);
+    
+    axios.get(`/auth/login`,formData)
+      .then(response => {
+        //{console.log(response.data.book);} // Inspect the data structure
+        console.log('user detailes fetched from login')
+        console.log(response);
+      })
+      .catch(error => {
+        console.error('There was an error verifying user email and password!', error);
+        
+      });
+
+    navigate('/dashboard');
   };
 
   return (
@@ -114,7 +128,7 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{mt: 8, mb: 4 }} /> */}
+        <Copyright sx={{mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

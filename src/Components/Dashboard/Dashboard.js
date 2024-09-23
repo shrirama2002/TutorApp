@@ -20,6 +20,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Sidebar from './listItems.js';
 //import SignIn from '../SignIn/SignIn.jsx';
 import DisplayBooks from './DisplayBooks.jsx'
+
+
 //import { useNavigate } from 'react-router-dom';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
@@ -95,6 +97,7 @@ const defaultTheme = createTheme();
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
+  
   const toggleDrawer = () => {
     setOpen(!open);
   };

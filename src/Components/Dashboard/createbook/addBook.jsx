@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { TextField, Button, MenuItem, Select, InputLabel, FormControl, Grid, Typography } from '@mui/material';
 import axios from '../../../axiosConfig.js';
+import Alert from '@mui/material/Alert';  // Import for displaying alerts
+
 const AddBook = () => {
   const [bookDetails, setBookDetails] = useState({
     name: '',
@@ -8,6 +10,8 @@ const AddBook = () => {
     status: 'draft',  // default value for status
     coverImage: null,
   });
+
+  const [message, setMessage] = React.useState(); // State for success or error message
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,6 +48,7 @@ const AddBook = () => {
     })
     .then((response) => {
       console.log('Book added successfully:', response.data);
+      setMessage({type: 'success', text: 'Book added successfully!' });
       // Optionally reset the form after successful submission
       setBookDetails({
         name: '',
@@ -54,15 +59,22 @@ const AddBook = () => {
     })
     .catch((error) => {
       console.error('There was an error adding the book!', error);
+      setMessage({ type: 'error', text: 'Please try again later.' });
     });
   };
 
   return (
     <Grid container justifyContent="center">
       <Grid item xs={12} sm={8} md={6}>
-        <Typography variant="h4" component="h2" gutterBottom>
+        <Typography variant="h5" component="h1">
           Add a New Book
         </Typography>
+        {/* Display success or error message */}
+        {message && (
+            <Alert severity={message.type} sx={{ width: '100%', mt: 2 }}>
+              {message.text}
+            </Alert>
+          )}
         <form onSubmit={handleSubmit}>
           <TextField
             fullWidth

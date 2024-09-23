@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import BookCard from "../Books/BookCard";
+import BookCard2 from "../Books/BookCard2";
 import axios from '../../axiosConfig.js'; // Import your Axios instance
 
 export default function DisplayAllBooks() {
@@ -37,7 +37,7 @@ export default function DisplayAllBooks() {
         books.map(book => (
           <Grid item xs={12} sm={6} md={4} key={book._id}>
             
-            <BookCard bookId={book._id} />
+            <BookCard2 bookId={book._id} isDashboard={false} />
           </Grid>
         ))
       ) : (

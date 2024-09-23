@@ -1,5 +1,3 @@
-// this is not in use anymore
-
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -13,9 +11,13 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../axiosConfig.js'; 
 
+// Define styled components
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -27,26 +29,22 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-//-------------------------------------------------------
-//code to limit the number of characters in dexcription 
 const TruncatedTypography = styled(Typography)({
   display: '-webkit-box',
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  WebkitLineClamp: 3, // Limit to 3 lines
+  WebkitLineClamp: 3, 
   whiteSpace: 'normal',
 });
-//-------------------------------------------------------
 
-//code to limit the heading to one line
 const TruncatedCardHeader = styled(CardHeader)({
   '& .MuiCardHeader-title': {
     display: '-webkit-box',
     WebkitBoxOrient: 'vertical',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    WebkitLineClamp: 1, // Limit to 1 line for title
+    WebkitLineClamp: 1,
     whiteSpace: 'normal',
   },
   '& .MuiCardHeader-subheader': {
@@ -54,14 +52,13 @@ const TruncatedCardHeader = styled(CardHeader)({
     WebkitBoxOrient: 'vertical',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    WebkitLineClamp: 1, // Limit to 1 line for subheader
+    WebkitLineClamp: 1,
     whiteSpace: 'normal',
   },
 });
 
-//-------------------------------------------------------
-
-export default function BookCard({ bookId }) {
+// BookCard component
+export default function BookCard2({ bookId, isDashboard }) {
   const [expanded, setExpanded] = React.useState(false);
   const [book, setBook] = React.useState(null);
   const navigate = useNavigate();
@@ -70,7 +67,6 @@ export default function BookCard({ bookId }) {
     // Fetch book data when the component mounts
     axios.get(`/books/${bookId}`)
       .then(response => {
-        //{console.log(response.data.book);} // Inspect the data structure
         setBook(response.data.book);
       })
       .catch(error => {
@@ -83,7 +79,41 @@ export default function BookCard({ bookId }) {
   };
 
   const handleCardClick = () => {
-    navigate(`/dashboard/${bookId}`);
+    //conditional rendering of paths/routes
+    if (!isDashboard) navigate(`/HomePage/${bookId}`);
+  };
+
+  const handleAddClick = () => {
+    console.log("Add chapter clicked");
+    // Add book logic here
+  };
+
+  const handleDeleteClick = () => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this book? This action is irreversible.');
+
+    // If user confirms, proceed with the delete request
+    if (confirmDelete) {
+      axios.delete(`/books/${bookId}`)
+        .then(response => {
+          // Notify the user of successful deletion
+          alert(response.data.message || 'Book was successfully deleted.');
+          // Optionally, you can refresh the book list or navigate the user
+          navigate('/dashboard/');
+        })
+        .catch(error => {
+          console.error('Error deleting the book:', error);
+          alert('There was an error deleting the book. Please try again.');
+        });
+    } else {
+      // If the user cancels, do nothing
+      console.log('Deletion cancelled by user.');
+    }
+  };
+
+  const handleEditClick = () => {
+    console.log("Edit book clicked");
+    // Edit book logic here
+    navigate(`/EditBook/${bookId}`)
   };
 
   if (!book) {
@@ -92,7 +122,6 @@ export default function BookCard({ bookId }) {
 
   return (
     <Card sx={{ maxWidth: 312, maxHeight: 420 }} onClick={handleCardClick}>
-      {/* Ensure you have an imageUrl or use a placeholder */}
       <CardMedia
         component="img"
         height="194"
@@ -101,7 +130,6 @@ export default function BookCard({ bookId }) {
       />
       <TruncatedCardHeader
         title={book.name || 'Untitled'}
-        // subheader={book.status || 'Unknown ID'}
       />
       <CardContent>
         <TruncatedTypography variant="body2" color="text.secondary">
@@ -109,6 +137,8 @@ export default function BookCard({ bookId }) {
         </TruncatedTypography>
       </CardContent>
       <CardActions disableSpacing>
+        {!isDashboard && (
+            <>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -123,12 +153,27 @@ export default function BookCard({ bookId }) {
         >
           <ExpandMoreIcon />
         </ExpandMore>
+            </>
+        )}
+
+        {/* Conditionally render buttons based on whether it is from Dashboard */}
+        {isDashboard && (
+          <>
+            <IconButton aria-label="edit book" onClick={handleEditClick}>
+              <EditIcon />
+            </IconButton>
+            <IconButton aria-label="delete book" onClick={handleDeleteClick}>
+              <DeleteIcon />
+            </IconButton>
+            <IconButton aria-label="add book" onClick={handleAddClick}>
+              <AddIcon />
+            </IconButton>
+          </>
+        )}
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           {/* Additional content can be placed here */}
-
-          {/* May be i can add number of chapters here */}
         </CardContent>
       </Collapse>
     </Card>

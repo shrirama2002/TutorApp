@@ -9,6 +9,7 @@ import MainLayout from './Components/bookopenlayout/MainLayout.jsx'
 import { useParams } from 'react-router-dom';
 import LandingPage from './Components/LandingPage/LandingPage.jsx';
 import AddBook from './Components/Dashboard/createbook/addBook.jsx';
+import EditBook from './Components/Dashboard/createbook/editBook.jsx';
 
 function App() {
   return (
@@ -19,8 +20,10 @@ function App() {
                 <Route path="/signup" element={<SignUp />} /> 
                 <Route path="/dashboard" element={<Dashboard/>} />
                 <Route path="/homepage" element={<HomePage/>} />
+                <Route path="/homepage/:bookId" element={<MainLayoutWrapper />} />
                 {/* <Route path="/mainlayout" element={<MainLayout/>}/> */}
                 <Route path="/dashboard/:bookId" element={<MainLayoutWrapper />} />
+                <Route path="/EditBook/:bookId" element={<EditBook/>}/>
                 <Route path="/addbook" element={<AddBook />} />
             </Routes>
         </Router>

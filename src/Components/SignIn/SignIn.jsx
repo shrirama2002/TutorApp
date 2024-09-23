@@ -22,7 +22,7 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://localhost:3000/signup">
+      <Link color="inherit" href="http://localhost:3000/">
         Shadow Read
       </Link>{' '}
       {new Date().getFullYear()}
@@ -60,7 +60,7 @@ export default function SignIn() {
         console.log('user detailes fetched from login')
         console.log(response);
         setMessage({type: 'success', text: 'Sign up successful!' });
-        navigate('/Dashboard');
+        navigate('/HomePage');
       })
       .catch(error => {
         console.error('There was an error verifying user email and password!', error);

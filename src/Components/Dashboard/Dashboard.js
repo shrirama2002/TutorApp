@@ -9,18 +9,18 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
+//import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 //import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-//import { mainListItems, secondaryListItems } from './listItems.js';
+//import NotificationsIcon from '@mui/icons-material/Notifications';
+import Sidebar from './listItems.js';
 //import SignIn from '../SignIn/SignIn.jsx';
 import DisplayBooks from './DisplayBooks.jsx'
-
+//import { useNavigate } from 'react-router-dom';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -33,7 +33,7 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://localhost:3000/">
+      <Link color="inherit" href="http://localhost:3000/">
         Shadow Read
       </Link>{' '}
       {new Date().getFullYear()}
@@ -43,6 +43,8 @@ function Copyright(props) {
 }
 
 const drawerWidth = 240;
+
+
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -97,11 +99,13 @@ export default function Dashboard() {
     setOpen(!open);
   };
 
+ 
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={!open}> {/* open is closed for now */}
+        <AppBar position="absolute" open={open}> {/* open is closed for now */}
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
@@ -128,14 +132,14 @@ export default function Dashboard() {
             >
               Dashboard
             </Typography>
-            <IconButton color="inherit">
+            {/* <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={!open}> {/* open is closed for now */}
+        <Drawer variant="permanent" open={open}> {/* open is closed for now */}
           <Toolbar
             sx={{
               display: 'flex',
@@ -146,7 +150,7 @@ export default function Dashboard() {
           >
              {/* This is where the nav bar name is */}
             <Typography variant="h6" color="text.secondary" sx={{}}>
-                  My Page
+                  Shadow Read
               </Typography>
             <IconButton onClick={toggleDrawer}>
              
@@ -157,7 +161,7 @@ export default function Dashboard() {
           <Divider />
           <List component="nav">
             {/* Main DashBoard Left Side  */}
-            {/* {mainListItems}  commented just for now for hide pupose */}
+            <Sidebar/> {/* commented just for now for hide pupose */}
             <Divider sx={{ my: 1 }} />
             {/* Main Dashboard left side bottom */}
             {/* {secondaryListItems} */}

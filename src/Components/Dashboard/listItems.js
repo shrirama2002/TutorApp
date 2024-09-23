@@ -1,85 +1,58 @@
-import * as React from 'react';
+import React,{ useState } from 'react';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-//import DashboardIcon from '@mui/icons-material/Dashboard';
-//import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-//import PeopleIcon from '@mui/icons-material/People';
-//import BarChartIcon from '@mui/icons-material/BarChart';
-//import LayersIcon from '@mui/icons-material/Layers';
-import AssignmentIcon from '@mui/icons-material/Assignment';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
-
-export const mainListItems = (
-  <React.Fragment>
-    {/* List User Profile */}
-    <ListItemButton>
-      <ListItemIcon>
-        {/* This is the User Profile Icon */}
-        <AccountCircleOutlinedIcon />
-      </ListItemIcon>
-      <ListItemText primary="My Profile" />
-    </ListItemButton>
-    {/* List My Books */}
-    <ListItemButton>
-      <ListItemIcon>
-        <LibraryBooksOutlinedIcon />
-      </ListItemIcon>
-      <ListItemText primary="My Books" />
-    </ListItemButton>
+import { useNavigate } from 'react-router-dom';
 
 
-    {/* <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItemButton> */}
+export default function Sidebar() {
+  const [view, setView] = useState('allBooks'); // Default view is 'allBooks'
 
+  //navigation 
+  const navigate = useNavigate();
 
-    {/* <ListItemButton>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItemButton> */}
+  const handleAllBooks = () => {
+    setView('allBooks');
+  };
 
+  const handleAddBook = () => {
+    setView('addBook');
+    navigate('/AddBook');
+  };
 
-    {/* <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItemButton> */}
+  
 
-    
-  </React.Fragment>
-);
+  return (
+    <div>
+      <React.Fragment>
+        {/* List User Profile */}
+        <ListItemButton onClick={handleAllBooks}>
+          <ListItemIcon>
+            <AccountCircleOutlinedIcon />
+          </ListItemIcon>
+          <ListItemText primary="All Books" />
+        </ListItemButton>
 
-export const secondaryListItems = (
-  <React.Fragment>
-    <ListSubheader component="div" inset>
-      Saved reports
-    </ListSubheader>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Current month" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItemButton>
-  </React.Fragment>
-);
+        {/* List add Books */}
+        <ListItemButton onClick={handleAddBook}>
+          <ListItemIcon>
+            <LibraryBooksOutlinedIcon />
+          </ListItemIcon>
+          <ListItemText primary="Add Books" />
+        </ListItemButton>
+      </React.Fragment>
+
+      {/* Conditionally Render Content based on the state */}
+      <div style={{ marginTop: '20px' }}>
+        {view === 'allBooks' ? (
+              <></>
+        ) : (
+          <>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}

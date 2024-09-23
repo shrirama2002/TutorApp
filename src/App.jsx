@@ -8,7 +8,7 @@ import HomePage from './Components/HomePage/HomePage.jsx';
 import MainLayout from './Components/bookopenlayout/MainLayout.jsx'
 import { useParams } from 'react-router-dom';
 import LandingPage from './Components/LandingPage/LandingPage.jsx';
-
+import AddBook from './Components/Dashboard/createbook/addBook.jsx';
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
                 <Route path="/homepage" element={<HomePage/>} />
                 {/* <Route path="/mainlayout" element={<MainLayout/>}/> */}
                 <Route path="/dashboard/:bookId" element={<MainLayoutWrapper />} />
+                <Route path="/addbook" element={<AddBook />} />
             </Routes>
         </Router>
   );

@@ -94,7 +94,7 @@ export default function BookCard({ bookId }) {
       <CardMedia
         component="img"
         height="194"
-        image={book.imageUrl || 'https://via.placeholder.com/312x194'}
+        image={book.coverImage.secure_url || 'https://via.placeholder.com/312x194'}
         alt={book.name || 'Book cover'}
       />
       <TruncatedCardHeader

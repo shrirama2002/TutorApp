@@ -14,6 +14,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../axiosConfig.js'
+import Alert from '@mui/material/Alert';  // Import for displaying alerts
+
+
 
 function Copyright(props) {
   return (
@@ -38,6 +41,8 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+
+  const [message, setMessage] = React.useState(); // State for success or error message
   const navigate = useNavigate();
   
   const handleSubmit = async (event) => {
@@ -49,18 +54,20 @@ export default function SignIn() {
     };
   console.log(formData);
     
-    axios.get(`/auth/login`,formData)
+    axios.get(`/auth/login/${formData.email}/${formData.password}`)
       .then(response => {
         //{console.log(response.data.book);} // Inspect the data structure
         console.log('user detailes fetched from login')
         console.log(response);
+        setMessage({type: 'success', text: 'Sign up successful!' });
+        navigate('/Dashboard');
       })
       .catch(error => {
         console.error('There was an error verifying user email and password!', error);
-        
+        setMessage({ type: 'error', text: 'Either User Id or Password is Wrong!!! Try Again.' });
       });
 
-    navigate('/dashboard');
+    
   };
 
   return (
@@ -81,6 +88,11 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          {message && (
+            <Alert severity={message.type} sx={{ width: '100%', mt: 2 }}>
+              {message.text}
+            </Alert>
+          )}
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"

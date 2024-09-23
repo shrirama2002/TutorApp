@@ -99,7 +99,7 @@ export default function BookCard({ bookId }) {
       />
       <TruncatedCardHeader
         title={book.name || 'Untitled'}
-        subheader={book.status || 'Unknown ID'}
+        // subheader={book.status || 'Unknown ID'}
       />
       <CardContent>
         <TruncatedTypography variant="body2" color="text.secondary">

@@ -15,6 +15,7 @@ export default function Sidebar() {
 
   const handleAllBooks = () => {
     setView('allBooks');
+    navigate('/dashboard')
   };
 
   const handleAddBook = () => {

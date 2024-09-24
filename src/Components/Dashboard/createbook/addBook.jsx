@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { TextField, Button, MenuItem, Select, InputLabel, FormControl, Grid, Typography } from '@mui/material';
+import { TextField, MenuItem, Select, InputLabel, FormControl, Grid, Typography } from '@mui/material';
 import axios from '../../../axiosConfig.js';
 import Alert from '@mui/material/Alert';  // Import for displaying alerts
+import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const AddBook = () => {
   const [bookDetails, setBookDetails] = useState({
@@ -12,6 +15,7 @@ const AddBook = () => {
   });
 
   const [message, setMessage] = React.useState(); // State for success or error message
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,6 +60,7 @@ const AddBook = () => {
         status: 'draft',
         coverImage: null,
       });
+      navigate(`/dashboard/${response.data.book._id}`)
     })
     .catch((error) => {
       console.error('There was an error adding the book!', error);
@@ -63,7 +68,26 @@ const AddBook = () => {
     });
   };
 
+  //backbutton
+  const handleBackClick = () => {
+    navigate('/dashboard');
+  };
+
   return (
+    <>
+    <Grid container justifyContent="left" padding={1}>
+    <Grid item xs={12} sm={8} md={6}>
+    <Button
+      variant="contained"
+      color="primary"
+      startIcon={<ArrowBackIcon />}
+      onClick={handleBackClick}
+    >
+      Back to Dashboard
+    </Button>
+    </Grid>
+    </Grid>
+    
     <Grid container justifyContent="center">
       <Grid item xs={12} sm={8} md={6}>
         <Typography variant="h5" component="h1">
@@ -136,6 +160,7 @@ const AddBook = () => {
         </form>
       </Grid>
     </Grid>
+    </>
   );
 };
 

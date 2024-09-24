@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Box, Typography,Card, CardContent } from '@mui/material';
-import ChapterList from './ChapterList';
-import ChapterContent from './ChapterContent';
+import ChapterList from './ChapterList.jsx';
+import ChapterContent from './ChapterContent.jsx';
 import axios from '../../axiosConfig.js';
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useNavigate } from 'react-router-dom';
 
-
-const MainLayout = ({ bookId,isDashboard}) => {
+const DashboardMainLayout = ({ bookId,isDashboard}) => {
 const [chapters, setChapters] = useState([]);
 const [selectedChapterIndex, setSelectedChapterIndex] = useState(null);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState(null);
-const navigate = useNavigate();
 
+const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`/books/${bookId}/chapters`)
@@ -35,9 +34,9 @@ const navigate = useNavigate();
   };
 
   const handleBackClick = () => {
-    navigate('/HomePage');
+    navigate('/dashboard');
   };
-  
+
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading chapters: {error.message}</div>;
@@ -52,7 +51,7 @@ const navigate = useNavigate();
       startIcon={<ArrowBackIcon />}
       onClick={handleBackClick}
     >
-      Back to HomePage
+      Back to Dashboard
     </Button>
     </Grid>
     </Grid>
@@ -103,4 +102,4 @@ const navigate = useNavigate();
   );
 };
 
-export default MainLayout;
+export default DashboardMainLayout;

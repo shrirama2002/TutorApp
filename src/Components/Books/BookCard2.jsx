@@ -13,9 +13,10 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
+//import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
-import axios from '../../axiosConfig.js'; 
+import axios from '../../axiosConfig.js';
+import Button from '@mui/material/Button';
 
 // Define styled components
 const ExpandMore = styled((props) => {
@@ -63,7 +64,7 @@ export default function BookCard2({ bookId, isDashboard }) {
   const [book, setBook] = React.useState(null);
   const navigate = useNavigate();
 
-  React.useEffect(() => {
+  function fetchbooks() {
     // Fetch book data when the component mounts
     axios.get(`/books/${bookId}`)
       .then(response => {
@@ -72,7 +73,11 @@ export default function BookCard2({ bookId, isDashboard }) {
       .catch(error => {
         console.error('There was an error fetching the book data!', error);
       });
-  }, [bookId]);
+  }
+
+  React.useEffect( ()=>{
+    fetchbooks();
+  });
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -85,7 +90,7 @@ export default function BookCard2({ bookId, isDashboard }) {
 
   const handleAddClick = () => {
     console.log("Add chapter clicked");
-    // Add book logic here
+    navigate(`/dashboard/${bookId}`);
   };
 
   const handleDeleteClick = () => {
@@ -98,7 +103,9 @@ export default function BookCard2({ bookId, isDashboard }) {
           // Notify the user of successful deletion
           alert(response.data.message || 'Book was successfully deleted.');
           // Optionally, you can refresh the book list or navigate the user
-          navigate('/dashboard/');
+            //navigate('/dashboard');
+            window.location.reload();
+        
         })
         .catch(error => {
           console.error('Error deleting the book:', error);
@@ -165,9 +172,14 @@ export default function BookCard2({ bookId, isDashboard }) {
             <IconButton aria-label="delete book" onClick={handleDeleteClick}>
               <DeleteIcon />
             </IconButton>
-            <IconButton aria-label="add book" onClick={handleAddClick}>
-              <AddIcon />
-            </IconButton>
+            <Button 
+                variant="contained" 
+                color="primary" 
+                onClick={handleAddClick}
+                style={{ marginLeft: 'auto',height: 30,width:150 }}
+            >
+            Add Chapters
+            </Button>
           </>
         )}
       </CardActions>

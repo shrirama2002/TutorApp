@@ -10,19 +10,23 @@ import { useParams } from 'react-router-dom';
 import LandingPage from './Components/LandingPage/LandingPage.jsx';
 import AddBook from './Components/Dashboard/createbook/addBook.jsx';
 import EditBook from './Components/Dashboard/createbook/editBook.jsx';
+import DashboardMainLayout from './Components/openbookdashboard/dashboardMainLayout.jsx';
+import AdminLogin from './Components/Dashboard/AdminLogin/AdminLogin.jsx';
 
 function App() {
   return (
         <Router>
             <Routes>
+
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/signin" element={<SignIn />} />
-                <Route path="/signup" element={<SignUp />} /> 
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/adminlogin" element={<AdminLogin />} />
                 <Route path="/dashboard" element={<Dashboard/>} />
                 <Route path="/homepage" element={<HomePage/>} />
                 <Route path="/homepage/:bookId" element={<MainLayoutWrapper />} />
                 {/* <Route path="/mainlayout" element={<MainLayout/>}/> */}
-                <Route path="/dashboard/:bookId" element={<MainLayoutWrapper />} />
+                <Route path="/dashboard/:bookId" element={<MainLayoutWrapper2 />} />
                 <Route path="/EditBook/:bookId" element={<EditBook/>}/>
                 <Route path="/addbook" element={<AddBook />} />
             </Routes>
@@ -30,12 +34,19 @@ function App() {
   );
 }
 
-
+// loading chapters from the homepage
 function MainLayoutWrapper() {
   
   const { bookId } = useParams(); // Get bookId from URL parameters
   
   return <MainLayout bookId={bookId} />;
+}
+
+//loading chapters from the dashboard
+function MainLayoutWrapper2(){
+  const { bookId,isDashboard } = useParams(); // Get bookId from URL parameters
+  
+  return <DashboardMainLayout bookId={bookId} isDashboard={isDashboard} />;
 }
 
 

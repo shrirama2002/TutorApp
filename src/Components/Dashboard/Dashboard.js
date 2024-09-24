@@ -95,7 +95,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Dashboard() {
+export default function Dashboard(isAdmin) {
   const [open, setOpen] = React.useState(true);
   
   const toggleDrawer = () => {
@@ -105,6 +105,8 @@ export default function Dashboard() {
  
 
   return (
+    <>
+    {isAdmin && (
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
@@ -196,5 +198,16 @@ export default function Dashboard() {
         </Box>
       </Box>
     </ThemeProvider>
+    )}
+    {!isAdmin && (
+        <Grid container justifyContent="center" padding={1}>
+        <Grid>
+            <Typography component="h1" variant="h4" color="primary">
+                 Admin Access Only
+            </Typography>
+        </Grid>
+      </Grid>
+    )}
+  </>
   );
 }

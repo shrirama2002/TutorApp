@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../../axiosConfig'; // Your axios configuration
-import { TextField, Button, MenuItem,FormControl,InputLabel,Grid,Typography,Alert } from '@mui/material';
+import { TextField, MenuItem,FormControl,InputLabel,Grid,Typography,Alert } from '@mui/material';
+import Button from '@mui/material/Button';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const EditBook = () => {
   const { bookId } = useParams(); // Assuming you're passing the bookId as a route parameter
@@ -74,7 +76,25 @@ const [message, setMessage] = React.useState(); // State for success or error me
       });
   };
 
+  //backbutton
+  const handleBackClick = () => {
+    navigate('/dashboard');
+  };
+
   return (
+    <>
+    <Grid container justifyContent="left" padding={1}>
+    <Grid item xs={12} sm={8} md={6}>
+    <Button
+      variant="contained"
+      color="primary"
+      startIcon={<ArrowBackIcon />}
+      onClick={handleBackClick}
+    >
+      Back to Dashboard
+    </Button>
+    </Grid>
+    </Grid>
     <Grid container justifyContent="center">
       <Grid item xs={12} sm={8} md={6}>
         <Typography variant="h5" component="h1">
@@ -141,6 +161,7 @@ const [message, setMessage] = React.useState(); // State for success or error me
     </form>
   </Grid>
 </Grid>
+</>
   );
 };
 

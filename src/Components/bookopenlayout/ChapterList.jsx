@@ -6,8 +6,8 @@ const ChapterList = ({ chapters, onChapterClick }) => {
     <Paper elevation={3} sx={{ padding: 1 }}>
       <List>
         {chapters.map((chapter, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton onClick={() => onChapterClick(index)}>
+          <ListItem sx={{ borderBottom: '1px solid #ccc' }} key={index} disablePadding>
+            <ListItemButton  onClick={() => onChapterClick(index)}>
               <ListItemText primary={chapter.title} />
             </ListItemButton>
           </ListItem>

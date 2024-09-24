@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AddIcon from '@mui/icons-material/Add';
 
-const DashboardMainLayout = ({ bookId,isDashboard}) => {
+const DashboardMainLayout = ({ bookId}) => {
 const [chapters, setChapters] = useState([]);
 const [selectedChapterIndex, setSelectedChapterIndex] = useState(null);
 const [loading, setLoading] = useState(true);
@@ -87,9 +87,10 @@ const navigate = useNavigate();
             <>
             
             <ChapterContent
-              main={isDashboard}
               title={chapters[selectedChapterIndex].title}
               content={chapters[selectedChapterIndex].body}
+              bookId={bookId}
+              chapterId={chapters[selectedChapterIndex]._id}
             />
             </>
           )}

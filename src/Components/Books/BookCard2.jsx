@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useEffect} from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -17,6 +17,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../axiosConfig.js';
 import Button from '@mui/material/Button';
+import { Tooltip } from '@mui/material';
 
 // Define styled components
 const ExpandMore = styled((props) => {
@@ -64,7 +65,8 @@ export default function BookCard2({ bookId, isDashboard }) {
   const [book, setBook] = React.useState(null);
   const navigate = useNavigate();
 
-  function fetchbooks() {
+  
+  useEffect( ()=>{
     // Fetch book data when the component mounts
     axios.get(`/books/${bookId}`)
       .then(response => {
@@ -73,11 +75,7 @@ export default function BookCard2({ bookId, isDashboard }) {
       .catch(error => {
         console.error('There was an error fetching the book data!', error);
       });
-  }
-
-  React.useEffect( ()=>{
-    fetchbooks();
-  });
+  },[bookId]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -146,32 +144,44 @@ export default function BookCard2({ bookId, isDashboard }) {
       <CardActions disableSpacing>
         {!isDashboard && (
             <>
+         <Tooltip title="favorites">  
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
+        </Tooltip> 
+        <Tooltip title="share">
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
+        </Tooltip>
+        
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >
+          <Tooltip title="Click to Read">
           <ExpandMoreIcon />
+          </Tooltip>
         </ExpandMore>
+
             </>
         )}
 
         {/* Conditionally render buttons based on whether it is from Dashboard */}
         {isDashboard && (
           <>
+          <Tooltip title="Edit Book">
             <IconButton aria-label="edit book" onClick={handleEditClick}>
               <EditIcon />
             </IconButton>
+            </Tooltip>
+            <Tooltip title="Delete Book">
             <IconButton aria-label="delete book" onClick={handleDeleteClick}>
               <DeleteIcon />
             </IconButton>
+            </Tooltip>
             <Button 
                 variant="contained" 
                 color="primary" 

@@ -20,7 +20,7 @@ export default function Sidebar() {
 
   const handleAddBook = () => {
     setView('addBook');
-    navigate('/AddBook');
+    navigate('/dashboard/addbook');
   };
 
   

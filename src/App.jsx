@@ -13,6 +13,9 @@ import EditBook from './Components/Dashboard/createbook/editBook.jsx';
 import DashboardMainLayout from './Components/Dashboard/openbookdashboard/dashboardMainLayout.jsx';
 import AdminLogin from './Components/Dashboard/AdminLogin/AdminLogin.jsx';
 import AddChapter from './Components/Dashboard/createbook/addChapter.jsx';
+import EditChapter from './Components/Dashboard/createbook/editChapter.jsx';
+
+
 function App() {
   return (
         <Router>
@@ -22,14 +25,16 @@ function App() {
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/adminlogin" element={<AdminLogin />} />
-                <Route path="/dashboard" element={<Dashboard/>} />
+                {/* <Route path="/dashboard/:isAdmin" element={<DashboardSecure/>} /> */}
+                <Route path="/dashboard/" element={<Dashboard/>} />
                 <Route path="/homepage" element={<HomePage/>} />
                 <Route path="/homepage/:bookId" element={<MainLayoutWrapper />} />
                 {/* <Route path="/mainlayout" element={<MainLayout/>}/> */}
                 <Route path="/dashboard/:bookId" element={<MainLayoutWrapper2 />} />
                 <Route path="/EditBook/:bookId" element={<EditBook/>}/>
-                <Route path="/addbook" element={<AddBook />} />
+                <Route path="/dashboard/addbook" element={<AddBook />} />
                 <Route path="/books/:bookId/addchapter" element={<AddChapter />} />
+                <Route path="/books/:bookId/chapters/:chapterId" element={<EditChapter />} />
             </Routes>
         </Router>
   );
@@ -51,6 +56,10 @@ function MainLayoutWrapper2(){
   return <DashboardMainLayout bookId={bookId} isDashboard={isDashboard} />;
 }
 
-
+// //secure dashboard
+// function DashboardSecure(){
+//   const { isAdmin } = useParams();
+//   return <Dashboard isAdmin={isAdmin} />
+// }
 
 export default App;

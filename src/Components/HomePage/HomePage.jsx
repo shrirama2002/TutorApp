@@ -20,7 +20,9 @@ import Link from '@mui/material/Link';
 //import { mainListItems, secondaryListItems } from './listItems.js';
 //import SignIn from '../SignIn/SignIn.jsx';
 import DisplayAllBooks from './DisplayAllBooks.jsx'
-
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -47,6 +49,14 @@ const defaultTheme = createTheme();
 
 export default function HomePage() {
 
+  //navigation 
+  const navigate = useNavigate();
+  //handle log out
+  const handleLogout = ()=>{
+    navigate('/signin')
+  }
+ 
+
   return (
     <ThemeProvider theme={defaultTheme}>
     
@@ -63,7 +73,16 @@ export default function HomePage() {
             overflow: 'auto',
           }}
         >
-          <Toolbar />
+          <Toolbar sx={{justifyContent:"right"}}>
+          <Button 
+          variant='outlined'
+            color="secondary"
+              endIcon={<LogoutIcon />}
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
+          </Toolbar>
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4}}>
             <Grid container spacing={3} sx={{padding: 3,gap: 2,justifyContent:"center"}}>
               {/* This is the main grid */}

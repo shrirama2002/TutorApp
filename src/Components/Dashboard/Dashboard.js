@@ -15,12 +15,15 @@ import Grid from '@mui/material/Grid';
 //import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
+//import Tooltip from '@mui/material/Tooltip';
+import LogoutIcon from '@mui/icons-material/Logout';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 //import NotificationsIcon from '@mui/icons-material/Notifications';
 import Sidebar from './listItems.js';
 //import SignIn from '../SignIn/SignIn.jsx';
 import DisplayBooks from './DisplayBooks.jsx'
-
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 //import { useNavigate } from 'react-router-dom';
 // import Chart from './Chart';
@@ -95,18 +98,26 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Dashboard(isAdmin) {
+export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
   
+  //naviagtion for logout
+  const navigate = useNavigate();
+
+  //toggle drawer
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
+  //handle log out
+  const handleLogout = ()=>{
+    navigate('/adminlogin')
+  }
  
 
   return (
     <>
-    {isAdmin && (
+    
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
@@ -137,11 +148,13 @@ export default function Dashboard(isAdmin) {
             >
               Dashboard
             </Typography>
-            {/* <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton> */}
+            <Button 
+            color="inherit"
+              endIcon={<LogoutIcon />}
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}> {/* open is closed for now */}
@@ -166,7 +179,7 @@ export default function Dashboard(isAdmin) {
           <Divider />
           <List component="nav">
             {/* Main DashBoard Left Side  */}
-            <Sidebar/> {/* commented just for now for hide pupose */}
+            <Sidebar/>            {/* commented just for now for hide purpose */}
             <Divider sx={{ my: 1 }} />
             {/* Main Dashboard left side bottom */}
             {/* {secondaryListItems} */}
@@ -198,16 +211,16 @@ export default function Dashboard(isAdmin) {
         </Box>
       </Box>
     </ThemeProvider>
-    )}
-    {!isAdmin && (
-        <Grid container justifyContent="center" padding={1}>
+    
+   
+        {/* <Grid container justifyContent="center" padding={1}>
         <Grid>
             <Typography component="h1" variant="h4" color="primary">
                  Admin Access Only
             </Typography>
         </Grid>
-      </Grid>
-    )}
+      </Grid> */}
+    
   </>
   );
 }

@@ -10,9 +10,9 @@ import { useParams } from 'react-router-dom';
 import LandingPage from './Components/LandingPage/LandingPage.jsx';
 import AddBook from './Components/Dashboard/createbook/addBook.jsx';
 import EditBook from './Components/Dashboard/createbook/editBook.jsx';
-import DashboardMainLayout from './Components/openbookdashboard/dashboardMainLayout.jsx';
+import DashboardMainLayout from './Components/Dashboard/openbookdashboard/dashboardMainLayout.jsx';
 import AdminLogin from './Components/Dashboard/AdminLogin/AdminLogin.jsx';
-
+import AddChapter from './Components/Dashboard/createbook/addChapter.jsx';
 function App() {
   return (
         <Router>
@@ -29,6 +29,7 @@ function App() {
                 <Route path="/dashboard/:bookId" element={<MainLayoutWrapper2 />} />
                 <Route path="/EditBook/:bookId" element={<EditBook/>}/>
                 <Route path="/addbook" element={<AddBook />} />
+                <Route path="/books/:bookId/addchapter" element={<AddChapter />} />
             </Routes>
         </Router>
   );
@@ -44,10 +45,12 @@ function MainLayoutWrapper() {
 
 //loading chapters from the dashboard
 function MainLayoutWrapper2(){
+
   const { bookId,isDashboard } = useParams(); // Get bookId from URL parameters
   
   return <DashboardMainLayout bookId={bookId} isDashboard={isDashboard} />;
 }
+
 
 
 export default App;

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Box, Typography,Card, CardContent } from '@mui/material';
 import ChapterList from './ChapterList.jsx';
 import ChapterContent from './ChapterContent.jsx';
-import axios from '../../axiosConfig.js';
+import axios from '../../../axiosConfig.js';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import AddIcon from '@mui/icons-material/Add';
 
 const DashboardMainLayout = ({ bookId,isDashboard}) => {
 const [chapters, setChapters] = useState([]);
@@ -37,14 +38,18 @@ const navigate = useNavigate();
     navigate('/dashboard');
   };
 
+  const handleAddNewChapter = () => {
+    navigate(`/books/${bookId}/addchapter`);
+  };
+
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading chapters: {error.message}</div>;
 
   return (
     <> 
-    <Grid container justifyContent="left" padding={1}>
-    <Grid item xs={12} sm={8} md={6}>
+    <Grid container justifyContent="space-between" padding={2}>
+    <Grid>
     <Button
       variant="contained"
       color="primary"
@@ -54,7 +59,18 @@ const navigate = useNavigate();
       Back to Dashboard
     </Button>
     </Grid>
+    <Grid >
+    <Button
+      variant="contained"
+      color="primary"
+      startIcon={<AddIcon />}
+      onClick={handleAddNewChapter}
+    >
+      Add New Chapters
+    </Button>
     </Grid>
+    </Grid>
+    
     <Box sx={{ height: '100vh', display: 'flex' }}>
       <Grid container sx={{ height: '100%' }}>
         {chapters.length > 0 ? (

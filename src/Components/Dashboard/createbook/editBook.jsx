@@ -66,8 +66,8 @@ const [message, setMessage] = React.useState(); // State for success or error me
     })
       .then(response => {
         setMessage({type: 'success', text: 'Book details updated successfully!' });
-        alert('Book updated successfully!');
-        navigate(`/dashboard`); // Navigate to the dashboard or any relevant page
+        //alert('Book updated successfully!');
+        // navigate(`/dashboard`); // Navigate to the dashboard or any relevant page
       })
       .catch(error => {
         console.error('Error updating the book:', error);
@@ -96,7 +96,7 @@ const [message, setMessage] = React.useState(); // State for success or error me
     </Grid>
     </Grid>
     <Grid container justifyContent="center">
-      <Grid item xs={12} sm={8} md={6}>
+      <Grid item xs={12} sm={8} md={6} padding={1}>
         <Typography variant="h5" component="h1">
           Update Book Details
         </Typography>

@@ -14,7 +14,9 @@ const styles = (theme) => {
       display: 'flex',
       justifyContent: 'space-between',
       padding: '20px',
-      backgroundColor: 'white',
+      backgroundColor: '#f2f0f1',
+      marginBottom: '1px',
+      
     },
     logo: {
       color: 'blue',

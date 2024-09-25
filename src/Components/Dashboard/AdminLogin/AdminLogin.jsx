@@ -1,3 +1,9 @@
+/* 
+@Component : Admin Log In Component
+@Service : A Log in Page for Admin
+@requires : none,:email,:password
+*/
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -5,7 +11,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-//import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -15,16 +20,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../../axiosConfig';
 import Alert from '@mui/material/Alert';  // Import for displaying alerts
-//import Dashboard from '../Dashboard';
 import { Link } from 'react-router-dom';
 
 
+//copyright component
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="http://localhost:3000/">
-        Shadow Read
+       &copy; Shadow Read
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -32,22 +37,15 @@ function Copyright(props) {
   );
 }
 
-//validation sample function for now
-// function myValidation(data){
-//   if(data.get('email')!=='abc' || data.get('password')!=='123')
-//   return false
-// }
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
+//main admin login component
 export default function AdminLogin() {
 
   const [message, setMessage] = React.useState(); // State for success or error message
   const navigate = useNavigate();
 
-  //admin access control
-  //const [isAdmin,setisAdmin] = React.useState(false);
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -58,13 +56,15 @@ export default function AdminLogin() {
     };
   console.log(formData);
     
+  // get details from backend
+  // Using params for now which is unsafe and not a industry standard method to do it
+  // will update to request body with post in backend in the near future
     axios.get(`/auth/login/${formData.email}/${formData.password}`)
       .then(response => {
         //{console.log(response.data.book);} // Inspect the data structure
         console.log('user detailes fetched from login')
         console.log(response);
         setMessage({type: 'success', text: 'Sign in successful!' });
-        //setisAdmin(true);
         navigate(`/dashboard`);
       })
       .catch(error => {
@@ -139,19 +139,6 @@ export default function AdminLogin() {
             >
               Sign In
             </Button>
-          
-            {/* <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="./signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid> */}
           </Box>
         </Box>
         <Copyright sx={{mt: 8, mb: 4 }} />

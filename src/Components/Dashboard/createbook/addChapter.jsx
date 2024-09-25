@@ -1,3 +1,8 @@
+/* 
+@Component : Add Chapter
+@Service : a page for adding new chapter to book
+@requires : this component is only called from the 'dashboardMainLayout' from 'dashboard' component
+*/
 import React, { useState } from 'react';
 import axios from '../../../axiosConfig'; // Ensure axiosConfig is set up to point to your backend
 import { useParams } from 'react-router-dom';
@@ -38,7 +43,7 @@ const [message, setMessage] = React.useState(); // State for success or error me
       bookId: bookId, // Passing bookId from the prop
     };
 
-    
+    //posting to backend server 
     axios.post(`/books/${bookId}/chapters`, chapterData,{
             headers: {
               'Content-Type': 'multipart/form-data',

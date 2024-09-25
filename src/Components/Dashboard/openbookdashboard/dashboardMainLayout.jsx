@@ -1,3 +1,10 @@
+/* 
+@Component : dashboardMainLayout
+@Service : This Layout handles the Component which shows the list of chapters for 'admin' from dashboard
+@requires : should be rendered from the dashboard bookcards, child of dashboard component
+@Main dependency : ChapterList component and ChapterContent Component both in openbookdashboard repo
+*/
+
 import React, { useState, useEffect } from 'react';
 import { Grid, Box, Typography,Card, CardContent } from '@mui/material';
 import ChapterList from './ChapterList.jsx';

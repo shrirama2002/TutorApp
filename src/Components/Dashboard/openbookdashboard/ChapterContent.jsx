@@ -1,9 +1,13 @@
+/* 
+@Component : ChapterContent
+@Service : This Component which shows Content of chapters and gives buttons to delete or edit current chapter 
+@requires : should be rendered from the dashboardMainLayout by 'admin'
+*/
 import React from 'react';
 import { Typography, Paper,Grid, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
-// import EditChapter from '../createbook/editChapter';
 import DeleteChapter from '../createbook/deleteChapter';
 
 const ChapterContent = ({ title, content,bookId,chapterId }) => {

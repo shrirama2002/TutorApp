@@ -1,3 +1,8 @@
+/* 
+@Component : Edit Chapter
+@Service : a page for editing existing chapter details
+@requires : this component is only called from the 'dashboardMainLayout' from 'dashboard' component
+*/
 import React, { useEffect, useState } from 'react';
 import { TextField, Button, MenuItem,Grid, Typography } from '@mui/material';
 import axios from '../../../axiosConfig'; // Adjust the path to your axios configuration
@@ -6,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import Alert from '@mui/material/Alert';  // Import for displaying alerts
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+//chapter edit component
 const EditChapter = () => {
     
   const {bookId,chapterId} = useParams();

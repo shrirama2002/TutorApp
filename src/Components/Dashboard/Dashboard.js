@@ -1,3 +1,9 @@
+/* 
+@Component : Dashboard Page
+@Service : Renders a dashboard page for 'admin' with 'bookcards' and add book feature
+@requires : DisplayAllBooks Component
+*/
+
 import * as React from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,30 +15,22 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-//import Badge from '@mui/material/Badge';
+
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-//import Paper from '@mui/material/Paper';
+
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
-//import Tooltip from '@mui/material/Tooltip';
+
 import LogoutIcon from '@mui/icons-material/Logout';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-//import NotificationsIcon from '@mui/icons-material/Notifications';
+
 import Sidebar from './listItems.js';
-//import SignIn from '../SignIn/SignIn.jsx';
+
 import DisplayBooks from './DisplayBooks.jsx'
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 
-//import { useNavigate } from 'react-router-dom';
-// import Chart from './Chart';
-// import Deposits from './Deposits';
-// import Orders from './Orders';
-//card for books
-//import RecipeReviewCard from '../Books/BookCard.js'
-//import { alignProperty } from '@mui/material/styles/cssUtils';
-//import BookCard from '../Books/BookCard.js';
 
 function Copyright(props) {
   return (

@@ -5,10 +5,15 @@ This is my Full Stack Project Front End Using React
 This Project will contain
 - A signup page
 - A login page
-- A home/landing page
+- landing page
+- A homepage for user
+- A dashboard for admin
 - A add books page
-- A view all books page
-- open a specific book page
+- A edit book page
+- A view all chapters
+- A add chapter page
+- A edit chapter page
+few utilities like delete book,delete chapter
 And much more
 
 Commands:
@@ -33,3 +38,9 @@ npm install @fontsource/roboto
 ...
 npm install @mui/icons-material
 ...
+
+- Check in package file for details regarding all dependencies..
+
+Made with Dedication By 
+- Shrirama Kamath
+- Shubham Saurav

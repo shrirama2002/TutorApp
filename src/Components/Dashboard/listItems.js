@@ -1,7 +1,7 @@
 /* 
 @Component : SideBar named as listitems
 @Service : This Component which shows Content of chapters 
-@requires : should be rendered from the MainLayout
+@requires : should be rendered from the MainLayout using the dashboard --isDashboard:true
 */
 
 import React,{ useState } from 'react';

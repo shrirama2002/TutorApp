@@ -1,3 +1,8 @@
+/* 
+@Component : Edit Book
+@Service : Renders a page for 'admin' to edit existing book details
+@requires : this component is only called from the 'Bookcard2' from 'dashboard' component
+*/
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../../axiosConfig'; // Your axios configuration

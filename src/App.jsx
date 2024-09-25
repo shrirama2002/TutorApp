@@ -1,7 +1,7 @@
 /* 
 @Component : App
 @Service : Render the App Component and Routing
-
+@root for all 
 */
 import './App.css';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';

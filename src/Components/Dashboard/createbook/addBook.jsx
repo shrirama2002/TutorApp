@@ -1,3 +1,9 @@
+/* 
+@Component : Add Book
+@Service : Renders a page for 'admin' to add a new book
+@requires : none, this component is called from the dashboard component
+*/
+
 import React, { useState } from 'react';
 import { TextField, MenuItem, Select, InputLabel, FormControl, Grid, Typography } from '@mui/material';
 import axios from '../../../axiosConfig.js';
@@ -6,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+//Add new book component/page
 const AddBook = () => {
   const [bookDetails, setBookDetails] = useState({
     name: '',
@@ -44,7 +51,7 @@ const AddBook = () => {
       formData.append('coverImage', bookDetails.coverImage); // append the image file
     }
 
-    // Send the form data to the backend
+    // Send the Form data to the backend
     axios.post('/books', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',

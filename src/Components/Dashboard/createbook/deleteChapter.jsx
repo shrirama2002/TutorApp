@@ -1,4 +1,9 @@
-//import React from 'react';
+/* 
+@Component : This is a simple function not a component, called Delete Chapter
+@Service : upon click deletes chapter by asking user confirmation
+@requires : this component is only called from the 'dashboardMainLayout' from 'dashboard' component
+*/
+
 import axios from '../../../axiosConfig'; // Ensure axiosConfig is set up to point to your backend
 
 const DeleteChapter = (bookId,chapterId) => {

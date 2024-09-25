@@ -1,4 +1,8 @@
+/* 
+@Component : App
+@Service : Render the App Component and Routing
 
+*/
 import './App.css';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import SignUp from './Components/SignUp/SignUp.jsx';
@@ -7,7 +11,7 @@ import Dashboard from './Components/Dashboard/Dashboard.js';
 import HomePage from './Components/HomePage/HomePage.jsx';
 import MainLayout from './Components/bookopenlayout/MainLayout.jsx'
 import { useParams } from 'react-router-dom';
-//import LandingPage from './Components/LandingPage/LandingPage.jsx';
+
 import AddBook from './Components/Dashboard/createbook/addBook.jsx';
 import EditBook from './Components/Dashboard/createbook/editBook.jsx';
 import DashboardMainLayout from './Components/Dashboard/openbookdashboard/dashboardMainLayout.jsx';
@@ -25,11 +29,11 @@ function App() {
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/adminlogin" element={<AdminLogin />} />
-                {/* <Route path="/dashboard/:isAdmin" element={<DashboardSecure/>} /> */}
+                
                 <Route path="/dashboard/" element={<Dashboard/>} />
                 <Route path="/homepage" element={<HomePage/>} />
                 <Route path="/homepage/:bookId" element={<MainLayoutWrapper />} />
-                {/* <Route path="/mainlayout" element={<MainLayout/>}/> */}
+      
                 <Route path="/dashboard/:bookId" element={<MainLayoutWrapper2 />} />
                 <Route path="/EditBook/:bookId" element={<EditBook/>}/>
                 <Route path="/dashboard/addbook" element={<AddBook />} />
@@ -48,7 +52,7 @@ function MainLayoutWrapper() {
   return <MainLayout bookId={bookId} />;
 }
 
-//loading chapters from the dashboard
+//loading chapters from the dashboard with bookId and ChapterId from URL -params
 function MainLayoutWrapper2(){
 
   const { bookId,isDashboard } = useParams(); // Get bookId from URL parameters
@@ -56,10 +60,5 @@ function MainLayoutWrapper2(){
   return <DashboardMainLayout bookId={bookId} isDashboard={isDashboard} />;
 }
 
-// //secure dashboard
-// function DashboardSecure(){
-//   const { isAdmin } = useParams();
-//   return <Dashboard isAdmin={isAdmin} />
-// }
 
 export default App;

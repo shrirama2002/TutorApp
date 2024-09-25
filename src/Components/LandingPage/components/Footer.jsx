@@ -1,3 +1,9 @@
+/* 
+@Component : Footer
+@Service : A child of landing page - renders a footer to landing page - conatins admin login button
+@requires : none
+*/
+
 import React from 'react';
 import { Box, Typography, Link } from '@mui/material';
 import { IconButton } from '@mui/material';
@@ -10,6 +16,7 @@ const Footer = () => {
   const date = new Date().getFullYear();
   const classes = useStyles();
 
+  //navigation
   const navigate = useNavigate();
   
   //handle admin login

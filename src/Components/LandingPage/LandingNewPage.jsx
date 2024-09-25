@@ -1,8 +1,14 @@
+/* 
+@Component : LandingPage
+@Service : A default landing page at '/' root
+@requires : components,styles,images from parent directory
+
+*/
 import Hero from "./components/Hero";
 import Header from "./components/Header";
 import Section from "./components/Section";
 import Testimonial from "./components/Testimonial";
-//import ContactUs from "./components/ContactUs";
+
 import Footer from "./components/Footer";
 import AboutUs from "./components/AboutUs";
 import '@fontsource/roboto/300.css';
@@ -20,11 +26,14 @@ const theme = createTheme({
     ].join(','),
   },});
 
+//landing page component
 function LandingNewPage() {
   return (
     <>
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      {/* all below components are dependencies */}
+      {/* imported at top */}
       <Header />
       <Hero />
       <Section />

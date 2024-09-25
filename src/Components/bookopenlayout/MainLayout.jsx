@@ -1,3 +1,10 @@
+/* 
+@Component : MainLayout
+@Service : This Layout handles the Component which shows the list of chapters 
+@requires : should be rendered from the homepage cards, HomePage component
+@Main dependency : ChapterList component and ChapterContent Component
+*/
+
 import React, { useState, useEffect } from 'react';
 import { Grid, Box, Typography,Card, CardContent } from '@mui/material';
 import ChapterList from './ChapterList';
@@ -29,11 +36,12 @@ const navigate = useNavigate();
       });
   }, [bookId]);
 
-  
+  //when clicked on chapter select its index from book Array
   const handleChapterClick = (index) => {
     setSelectedChapterIndex(index);
   };
 
+  //Get back to homepage
   const handleBackClick = () => {
     navigate('/HomePage');
   };
@@ -70,7 +78,8 @@ const navigate = useNavigate();
             </div>
           ) : (
             <>
-            
+            {/* This will call the title and content of selected chapter */}
+            {/* Will be rendered beside(right) of chapters list */}
             <ChapterContent
               main={isDashboard}
               title={chapters[selectedChapterIndex].title}

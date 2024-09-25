@@ -1,3 +1,9 @@
+/* 
+@Component : DisplayAllBooks
+@Service : A child of DashBoard - renders all bookcard to dashboard page
+@requires : BookCard2 component from Books folder
+*/
+
 import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import BookCard2 from "../Books/BookCard2.jsx";
@@ -8,6 +14,7 @@ export default function DisplayBooks() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  //gets all boks as array from backend
   useEffect(() => {
     axios.get('/books/')
       .then(response => {
@@ -36,7 +43,8 @@ export default function DisplayBooks() {
       {books.length > 0 ? (
         books.map(book => (
           <Grid item xs={12} sm={6} md={4} key={book._id}>
-            
+            {/* Loads the bookcard from here using bookId */}
+            {/* from a single book at a time */}
             <BookCard2 bookId={book._id} isDashboard={true}/>
           </Grid>
         ))

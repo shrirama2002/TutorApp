@@ -1,3 +1,8 @@
+/* 
+@Component : Header
+@Service : A child of landing page - renders header to landing page - conatins user login button
+@requires : none
+*/
 import {
   AppBar,
   Typography,
@@ -46,6 +51,8 @@ ElevationScroll.propTypes = {
 
 const Header = (props) => {
   const classes = useStyles();
+  // can add many more buttons by adding elements to list
+  //it only contains login button for now
   const links = [
     { id: 1, route: 'Login', url: '/signin' },
   ];

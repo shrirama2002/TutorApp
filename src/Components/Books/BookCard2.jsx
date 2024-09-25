@@ -1,3 +1,9 @@
+/* 
+@Component : About US
+@Service : A child of landing page - renders about Us details to landing page
+@requires : none
+*/
+
 import React,{useEffect} from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -13,7 +19,6 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-//import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../axiosConfig.js';
 import Button from '@mui/material/Button';
@@ -59,7 +64,7 @@ const TruncatedCardHeader = styled(CardHeader)({
   },
 });
 
-// BookCard component
+// BookCard component starts here
 export default function BookCard2({ bookId, isDashboard }) {
   const [expanded, setExpanded] = React.useState(false);
   const [book, setBook] = React.useState(null);
@@ -67,7 +72,7 @@ export default function BookCard2({ bookId, isDashboard }) {
 
   
   useEffect( ()=>{
-    // Fetch book data when the component mounts
+    // Fetch book data when the component mounts/renders each time
     axios.get(`/books/${bookId}`)
       .then(response => {
         setBook(response.data.book);
@@ -77,20 +82,24 @@ export default function BookCard2({ bookId, isDashboard }) {
       });
   },[bookId]);
 
+  //handle the extend button click
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  //handle the card clicked
   const handleCardClick = () => {
     //conditional rendering of paths/routes
     if (!isDashboard) navigate(`/HomePage/${bookId}`);
   };
 
+  //handles the add chapter click
   const handleAddClick = () => {
     console.log("Add chapter clicked");
     navigate(`/dashboard/${bookId}`);
   };
 
+  //handle the delete the book card click
   const handleDeleteClick = () => {
     const confirmDelete = window.confirm('Are you sure you want to delete this book? This action is irreversible.');
 
@@ -115,12 +124,14 @@ export default function BookCard2({ bookId, isDashboard }) {
     }
   };
 
+  //handle the edit the book details click
   const handleEditClick = () => {
     console.log("Edit book clicked");
     // Edit book logic here
     navigate(`/EditBook/${bookId}`)
   };
 
+  //handles loading when its loading from data base or data source
   if (!book) {
     return <div>Loading...</div>; // Show a loading indicator while fetching data
   }
@@ -142,6 +153,8 @@ export default function BookCard2({ bookId, isDashboard }) {
         </TruncatedTypography>
       </CardContent>
       <CardActions disableSpacing>
+        {/* conditional Rendering */}
+        {/* If clicked from homepage load this part */}
         {!isDashboard && (
             <>
          <Tooltip title="favorites">  
@@ -168,7 +181,7 @@ export default function BookCard2({ bookId, isDashboard }) {
 
             </>
         )}
-
+        {/* If clicked from dashboard load this part */}
         {/* Conditionally render buttons based on whether it is from Dashboard */}
         {isDashboard && (
           <>

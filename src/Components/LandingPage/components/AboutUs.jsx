@@ -1,3 +1,8 @@
+/* 
+@Component : About US
+@Service : A child of landing page - renders about Us details to landing page
+@requires : none
+*/
 import React from 'react';
 import { Grid, Typography, Button, Box } from '@mui/material';
 import aboutusbook from '../images/aboutusbook.jpg';

@@ -1,3 +1,8 @@
+/* 
+@Component : Testimonials
+@Service : A child of landing page - renders Testimonials to landing page
+@requires : static contents , can add from DB in future
+*/
 import React from 'react';
 import { Typography, Box, Card, CardContent, Grid } from '@mui/material';
 import { Avatar } from '@mui/material';

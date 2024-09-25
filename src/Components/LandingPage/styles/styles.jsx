@@ -1,3 +1,10 @@
+/* 
+@Component : styles
+@Service : a MUI styles component which provides styling for landing page and child components
+@requires : none
+
+*/
+
 import { makeStyles } from '@mui/styles';
 
 const styles = (theme) => {

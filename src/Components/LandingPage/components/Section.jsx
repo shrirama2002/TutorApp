@@ -1,3 +1,8 @@
+/* 
+@Component : Section
+@Service : A child of landing page - renders 3 features of app to landing page in a box
+@requires : none
+*/
 import React from 'react';
 import { Grid, Typography, Box } from '@mui/material';
 import useStyles from '../styles/styles';

@@ -1,3 +1,9 @@
+/* 
+@Component : ChapterList
+@Service : This Component handles list of chapters and selecting index
+@requires : should be rendered from the MainLayout
+*/
+
 import React from 'react';
 import { List, ListItem, ListItemText, ListItemButton, Paper } from '@mui/material';
 

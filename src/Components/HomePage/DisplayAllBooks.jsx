@@ -1,7 +1,12 @@
+/* 
+@Component : DisplayAllBooks
+@Service : A child of HomePage - renders all books card home page
+@requires : BookCard2 component from Books folder
+*/
+
 import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-//import BookCard from "../Books/BookCard";
-import axios from '../../axiosConfig.js'; // Import your Axios instance
+import axios from '../../axiosConfig.js'; // Import your Axios instance (customized)
 import BookCard2 from "../Books/BookCard2.jsx";
 
 export default function DisplayAllBooks() {
@@ -37,7 +42,7 @@ export default function DisplayAllBooks() {
       {books.length > 0 ? (
         books.map(book => (
           <Grid item xs={12} sm={6} md={4} key={book._id}>
-            
+            {/* Here it is calling the BookCard component for each book details fetched */}
             <BookCard2 bookId={book._id} />
           </Grid>
         ))

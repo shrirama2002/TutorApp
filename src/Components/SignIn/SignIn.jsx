@@ -1,3 +1,9 @@
+/* 
+@Component : SignIn
+@Service : A Sign in Page for Normal Users
+@requires : email,password
+*/
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -17,7 +23,7 @@ import axios from '../../axiosConfig.js'
 import Alert from '@mui/material/Alert';  // Import for displaying alerts
 
 
-
+//copyright component
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -31,12 +37,6 @@ function Copyright(props) {
   );
 }
 
-//validation sample function for now
-// function myValidation(data){
-//   if(data.get('email')!=='abc' || data.get('password')!=='123')
-//   return false
-// }
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 

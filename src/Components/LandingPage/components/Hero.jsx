@@ -1,3 +1,9 @@
+/* 
+@Component : Hero
+@Service : A child of landing page - renders details to landing page
+@requires : none
+*/
+
 import React from 'react';
 import { Grid, Typography, Button, Box } from '@mui/material';
 import herobook from '../images/herobook.jpg';

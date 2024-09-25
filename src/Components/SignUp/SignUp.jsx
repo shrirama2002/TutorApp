@@ -1,10 +1,16 @@
+/* 
+@Component : SignUp
+@Service : A Sign Up Page for Normal Users
+@requires : name,email,password,role
+
+*/
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-//import FormControlLabel from '@mui/material/FormControlLabel';
-//import Checkbox from '@mui/material/Checkbox';
+
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -15,6 +21,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from '../../axiosConfig.js';
 import Alert from '@mui/material/Alert';  // Import for displaying alerts
 
+// for displaying copyright at end of component
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -28,10 +35,11 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
+
 
 const defaultTheme = createTheme();
 
+//sign up component
 export default function SignUp() {
 
   const [message, setMessage] = React.useState(); // State for success or error message
@@ -133,12 +141,7 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
+              
             </Grid>
             <Button
               type="submit"

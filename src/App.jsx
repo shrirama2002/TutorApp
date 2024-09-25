@@ -7,21 +7,21 @@ import Dashboard from './Components/Dashboard/Dashboard.js';
 import HomePage from './Components/HomePage/HomePage.jsx';
 import MainLayout from './Components/bookopenlayout/MainLayout.jsx'
 import { useParams } from 'react-router-dom';
-import LandingPage from './Components/LandingPage/LandingPage.jsx';
+//import LandingPage from './Components/LandingPage/LandingPage.jsx';
 import AddBook from './Components/Dashboard/createbook/addBook.jsx';
 import EditBook from './Components/Dashboard/createbook/editBook.jsx';
 import DashboardMainLayout from './Components/Dashboard/openbookdashboard/dashboardMainLayout.jsx';
 import AdminLogin from './Components/Dashboard/AdminLogin/AdminLogin.jsx';
 import AddChapter from './Components/Dashboard/createbook/addChapter.jsx';
 import EditChapter from './Components/Dashboard/createbook/editChapter.jsx';
-
+import LandingNewPage from './Components/LandingPage/LandingNewPage.jsx';
 
 function App() {
   return (
         <Router>
             <Routes>
 
-                <Route path="/" element={<LandingPage />} />
+                <Route path="/" element={<LandingNewPage />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/adminlogin" element={<AdminLogin />} />

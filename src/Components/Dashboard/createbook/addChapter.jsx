@@ -30,6 +30,7 @@ const [message, setMessage] = React.useState(); // State for success or error me
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setMessage(false);
   };
 
   const handleSubmit =  (e) => {

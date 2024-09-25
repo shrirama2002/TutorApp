@@ -29,7 +29,7 @@ const Footer = () => {
       
       <Typography className={classes.footerText}>
         Provided by{' '}
-        <Link href="http:localhost:3000/" underline="none">
+        <Link href="/" underline="none">
           Shadow Read
         </Link>
       </Typography>

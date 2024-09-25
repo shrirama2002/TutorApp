@@ -43,6 +43,7 @@ const EditChapter = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    setMessage(false);
     setChapterData((prevData) => ({
       ...prevData,
       [name]: value
@@ -59,7 +60,7 @@ const EditChapter = () => {
       })
       .then(response => {
         console.log(response.data)
-        setMessage({type: 'success', text: 'Book details updated successfully!' });
+        setMessage({type: 'success', text: 'Chapter details updated successfully!' });
         //alert('Book updated successfully!');
         // navigate(`/dashboard`); // Navigate to the dashboard or any relevant page
       })

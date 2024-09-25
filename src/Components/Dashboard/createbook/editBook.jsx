@@ -36,6 +36,7 @@ const [message, setMessage] = React.useState(); // State for success or error me
   }, [bookId]);
 
   const handleInputChange = (e) => {
+    setMessage(false);
     const { name, value } = e.target;
     setBook((prevBook) => ({
       ...prevBook,
@@ -44,6 +45,7 @@ const [message, setMessage] = React.useState(); // State for success or error me
   };
 
   const handleFileChange = (e) => {
+    setMessage(false);
     setBook((prevBook) => ({
       ...prevBook,
       coverImage: e.target.files[0]
